@@ -1,63 +1,93 @@
-# Описание проекта
-  Это учебный проект на базе фреймворка **FastAPI**. 
+# QRkot
 
-  QRKot — приложение для Благотворительного фонда поддержки котиков.
-  Фонд собирает пожертвования на различные целевые проекты: на медицинское 
-  обслуживание нуждающихся хвостатых, на обустройство кошачьей колонии в 
-  подвале, на корм оставшимся без попечения кошкам — на любые цели, связанные 
-  с поддержкой кошачьей популяции :)
-  
- 
-# Запуск проекта
-  1) Клонировать репозиторий:
-    ```
-    git clone https://github.com/mkmmcvrs68/cat_charity_fund
-    ```
-  2) Cоздать виртуальное окружение:
+![Python](https://img.shields.io/badge/python-3670A0?logo=python&logoColor=ffdd54)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?logo=fastapi)
+![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?logo=sqlite&logoColor=white)
+---
 
-    ```
-    python3 -m venv venv
-    или 
-    python -m venv venv (Windows)
-    ```
-  3) Активировать виртуальное окружение:
-    ```
-    source venv/bin/activate
-    или
-    source venv/scripts/activate (Windows)
-    ```
+Это учебный проект на базе фреймворка **FastAPI**. 
 
-  4) Установить зависимости из файла requirements.txt:
-    ```
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-    ```
-  5) Создать и заполнить файл .env по примеру из .env.example:
-    ```
-    touch .env
-    ```
-  6) Применение миграций:
-    ```
-    alembic upgrade head
-    ```
-  7) Запуск проекта:
-    ```
-    uvicorn app.main:app --reload
-    ```
+QRKot — приложение для Благотворительного фонда поддержки котиков.
+Фонд собирает пожертвования на различные целевые проекты: на медицинское 
+обслуживание нуждающихся хвостатых, на обустройство кошачьей колонии в 
+подвале, на корм оставшимся без попечения кошкам — на любые цели, связанные 
+с поддержкой кошачьей популяции :)
 
-# Проект и документация
-  Локальный доступ к API: http://127.0.0.1:8000
-  Автоматически сгенерированная документация Swager: http://127.0.0.1:8000/docs
+### Проекты
+Администратор может создать несколько целевых проектов, с указанием 
+необходимой суммы. После сбора необходимой суммы, проект закрывается. Все 
+проекты доступны для просмотра без авторизации.
+### Пожертвования
+Зарегистрированные пользователи могут вносить пожертвования. Все пожертвования 
+идут на обеспечение проектов в порядке очереди. Пользователь может видеть 
+только свои пожертвования.
+### Отчёт
+Приложение умеет формировать отчёт в гугл-таблице, в котором перечислены 
+закрытые проекты, отсортированные по скорости сбора средств.
+
+## Стек технологий:
+- Python 3.9
+- FastAPI v.0.78.0
+- SQLite
+- SQLAlchemy
+- Alembic
+- Google API
 
 
-# Стек технологий:
-  * Python 3.9.10
-  * FastAPI 0.78.0
-  * SQLAlchemy 1.4.36
-  * Uvicorn[standart] 0.17.6
-  * Alembic 1.7.7
-  * Pydantic 1.9.1
+## Подготовка к работе:
 
+<details>
+    <summary><b>Клонируйте репозиторий</b></summary>
+
+```shell
+git clone git@github.com:rasputin-pro/QRkot_spreadsheets.git
+
+cd qrkot_spreadsheets
+```
+</details>
+
+<details>
+    <summary><b>Создайте файл <code>.env</code> в корне проекта 
+со своими данными</b></summary>
+
+```dotenv
+APP_TITLE=Кошачий благотворительный фонд (0.1.0)
+DESCRIPTION=Сервис для поддержки котиков!
+DATABASE_URL=sqlite+aiosqlite:///./fastapi.db
+SECRET=QU:=r6S7+{'et=rf
+FIRST_SUPERUSER_EMAIL=superuser@example.com
+FIRST_SUPERUSER_PASSWORD=5>~H*d&:Yz5jXrna
+# Доступ к сервисному аккаунту Google Cloud Platform
+EMAIL=
+TYPE=
+PROJECT_ID=
+PRIVATE_KEY_ID=
+PRIVATE_KEY=
+CLIENT_EMAIL=
+CLIENT_ID=
+AUTH_URI=
+TOKEN_URI=
+AUTH_PROVIDER_X509_CERT_URL=
+CLIENT_X509_CERT_URL=
+```
+> Данные для доступа к сервисному аккаунту Google Cloud Platform возьмите из
+> `*.json` файла, полученного после создания аккаунта.
+</details>
+
+<details>
+    <summary><b>Создайте и активируйте виртуальное окружение</b></summary>
+
+```shell
+# Linux/MacOS
+python3 -m venv venv
+source venv/bin/activate
+python3 -m pip install --upgrade pip
+
+# Windows
+python -m venv venv
+source venv/scripts/activate
+python -m pip install --upgrade pip
+```
 > В проекте используется **Python** версии **3.9**
 </details>
 
@@ -88,6 +118,15 @@ uvicorn app.main:app --reload
 > По-умолчанию приложение запускается на 8000 порту, но вы можете изменить 
 > порт: `--port 8001`
 </details>
+
+
+## Документация
+После запуска программы документация будет доступна по адресам:
+
+[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+
+[http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
+
 
 # Автор
   [Ермаков Владислав](https://github.com/Vladislav199912)

@@ -1,9 +1,10 @@
 from datetime import datetime
-from typing import Type
+from typing import Type, Union
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-
+from app.models.charity_project import CharityProject
+from app.models.donation import Donation
 from app.models.base import BaseModel
 
 
@@ -25,14 +26,16 @@ async def investation(
     return obj_in
 
 
-async def close_obj(obj: BaseModel) -> BaseModel:
+def close_obj(obj: BaseModel) -> BaseModel:
     obj.invested_amount = obj.full_amount
     obj.fully_invested = True
     obj.close_date = datetime.now()
     return obj
 
 
-async def calculation(obj_in, obj):
+async def calculation(
+    obj_in: Union[CharityProject, Donation],
+        obj: Union[CharityProject, Donation],):
     have = obj_in.full_amount - obj_in.invested_amount
     need = obj.full_amount - obj.invested_amount
     if have == need:
