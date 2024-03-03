@@ -9,6 +9,7 @@ SCOPES = [
     'https://www.googleapis.com/auth/drive'
 ]
 INFO = {
+    'type': settings.type,
     'project_id': settings.project_id,
     'private_key_id': settings.private_key_id,
     'private_key': settings.private_key,
