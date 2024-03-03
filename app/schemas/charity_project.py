@@ -1,11 +1,10 @@
 from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel, Extra, Field, PositiveInt
-from app.constatnts import MAX_LENGTH
 
 
-class CharityProjectBaseSchema(BaseModel, MAX_LENGTH):
-    name: Optional[str] = Field(None, MAX_LENGTH)
+class CharityProjectBaseSchema(BaseModel):
+    name: Optional[str] = Field(None, max_length=100)
     description: Optional[str] = Field(None)
     full_amount: Optional[PositiveInt]
 
@@ -14,8 +13,8 @@ class CharityProjectBaseSchema(BaseModel, MAX_LENGTH):
         min_anystr_length = 1
 
 
-class CreateCharityProjectSchema(CharityProjectBaseSchema, MAX_LENGTH):
-    name: str = Field(..., MAX_LENGTH)
+class CreateCharityProjectSchema(CharityProjectBaseSchema):
+    name: str = Field(..., max_length=100)
     description: str = Field()
     full_amount: PositiveInt
 
